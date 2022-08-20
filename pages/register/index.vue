@@ -90,9 +90,9 @@ export default {
     return {
 
       form: {
-        Firstname: "",
-        Lastname: "",
-        gender: 1,
+        Firstname: this.$store.getters.getRegister.Firstname,
+        Lastname: this.$store.getters.getRegister.Lastname,
+        gender: this.$store.getters.getRegister.gender,
       },
     };
   },
