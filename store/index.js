@@ -6,7 +6,12 @@ export const state = () => ({
   register :{
     Firstname:'',
     Lastname:'',
-    gender:1
+    gender:1,
+    email:'',
+    phone:'',
+    birthday:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+    company:'',
+    position:''
   }
 })
 

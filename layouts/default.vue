@@ -30,6 +30,9 @@ export default {
   .text-primary{
     color:#1A56be
   }
+  .text-main{
+    font-size: 20px;
+  }
   .text-btn{
     font-size: 20px !important;
     text-transform: none !important;
