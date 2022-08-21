@@ -39,9 +39,18 @@ export default {
     height: auto !important;
     padding: 10px 0 !important;
     font-weight: bold;
+    &.outlined{
+    border: 1px solid #1A56be;
+    border-radius: 28px;
+    line-height: normal;
+  }
   }
   .text-title{
     font-size: 20px;
     font-weight: bold;
   }
+  .set-padding{
+    padding: 0 10px;
+  }
+
 </style>
