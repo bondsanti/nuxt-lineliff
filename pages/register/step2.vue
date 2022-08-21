@@ -106,11 +106,11 @@ export default {
   data() {
     return {
       form:{
-        email:'',
-        phone:'',
-        birthday:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-        company:'',
-        position:''
+        email:this.$store.getters.getRegister.email,
+        phone:this.$store.getters.getRegister.phone,
+        birthday:this.$store.getters.getRegister.birthday,
+        company:this.$store.getters.getRegister.company,
+        position:this.$store.getters.getRegister.position,
       },
       modal: false,
       emailvalidated:false,
@@ -169,7 +169,14 @@ export default {
             errors.push(`<strong>${field}</strong>&nbsp;can not null`)
           }
         });
-
+        if (!this.emailvalidated) {
+          validated = false
+          errors.push("Check Your Email");
+        }
+       if (!this.phonevalidated) {
+          validated = false
+          errors.push("Check Your PhoneNumber");
+        }
         if(!validated){
           this.$store.dispatch('setDialog',{
             isShow:true,
@@ -179,9 +186,18 @@ export default {
 
         return validated
       },
-    onRegister(){
+   async onRegister(){
        if(this.validate()){
-        console.log('success');
+        this.$store.dispatch('setRegister',this.form);
+        try {
+           const resp = await this.$axios.patch(`https://nuxt-liff-9c8df-default-rtdb.asia-southeast1.firebasedatabase.app/members/line:001/profile.json`,
+        this.$store.getters.getRegister);
+        //console.log(resp);
+        this.$router.push('/register/done')
+        } catch (error) {
+          console.error(err);
+        }
+
        }
 
     },
